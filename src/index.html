@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>React Traffic Light</title>
+  <style>
+    body {
+      background-color: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .traffic-light {
+      background-color: #222;
+      padding: 20px;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 100px;
+      align-items: center;
+    }
+
+    .light {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: #555;
+      transition: box-shadow 0.3s ease, background-color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .light.red.active {
+      background-color: red;
+      box-shadow: 0 0 20px red;
+    }
+
+    .light.yellow.active {
+      background-color: yellow;
+      box-shadow: 0 0 20px yellow;
+    }
+
+    .light.green.active {
+      background-color: green;
+      box-shadow: 0 0 20px green;
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+
+  <!-- Load React and ReactDOM -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- React Code -->
+  <script type="text/babel">
+    const { useState } = React;
+
+    function TrafficLight() {
+      const [color, setColor] = useState("red");
+
+      return (
+        <div className="traffic-light">
+          <div
+            className={`light red ${color === "red" ? "active" : ""}`}
+            onClick={() => setColor("red")}
+          ></div>
+          <div
+            className={`light yellow ${color === "yellow" ? "active" : ""}`}
+            onClick={() => setColor("yellow")}
+          ></div>
+          <div
+            className={`light green ${color === "green" ? "active" : ""}`}
+            onClick={() => setColor("green")}
+          ></div>
+        </div>
+      );
+    }
+
+    ReactDOM.render(<TrafficLight />, document.getElementById("app"));
+  </script>
+</body>
+</html>
